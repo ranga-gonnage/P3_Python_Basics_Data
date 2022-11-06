@@ -1,5 +1,3 @@
-from subset import data
-
 def transform(extracted_data):
     clean_data = {}
     for index, data in enumerate(extracted_data):
@@ -7,7 +5,7 @@ def transform(extracted_data):
         convert_date(clean_data)
         convert_to_int(clean_data)
         add_calculations(clean_data)
-        
+
         print(clean_data)
     return clean_data
 
@@ -44,5 +42,4 @@ def grouped_counted_death_cases(clean_data):
     clean_data["death_count"] = clean_data["death_count"] + clean_data["probable_death_count"]
     del clean_data["probable_death_count"]
 
-transform(data)
 
