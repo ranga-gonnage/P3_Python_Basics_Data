@@ -3,7 +3,7 @@ class Transformer:
         self.cleaned_data = []
         self.extracted_data = extracted_data
 
-    def transform(self, extracted_data):
+    def transform(self):
         for index, data in enumerate(self.extracted_data):
             clean_data = {}
             self._remove_data(data, clean_data)
