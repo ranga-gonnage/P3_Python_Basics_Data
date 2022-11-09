@@ -1,4 +1,3 @@
-from subset import data
 from transformer import Transformer
 from extractor import Extractor
 from loader import Loader

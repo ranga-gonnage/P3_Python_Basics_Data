@@ -13,7 +13,7 @@ class Updater:
         if(last_line[0] != self.extracted_data[self.LAST_INDEX]['date']):
             self.cleaned_data.append(self.extracted_data[self.LAST_INDEX])
         else:
-            print("Nothing to update ! Goodbye")
+            print("Nothing to update ! Goodbye !")
             exit()
 
     def get_clean_data(self):

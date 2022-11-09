@@ -1,3 +1,6 @@
+from tqdm import tqdm
+import time
+
 class Transformer:
     def __init__(self, extracted_data):
         self.cleaned_data = []
@@ -5,7 +8,7 @@ class Transformer:
 
     def transform(self):
         print("Starting the tranformation ...")
-        for index, data in enumerate(self.extracted_data):
+        for index, data in tqdm(enumerate(self.extracted_data), desc="Data transforming"):
             clean_data = {}
             self._remove_data(data, clean_data)
             self._convert_date(clean_data)
