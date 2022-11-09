@@ -1,5 +1,5 @@
 from tqdm import tqdm
-import time
+
 
 class Transformer:
     def __init__(self, extracted_data):
@@ -8,7 +8,9 @@ class Transformer:
 
     def transform(self):
         print("Starting the tranformation ...")
-        for index, data in tqdm(enumerate(self.extracted_data), desc="Data transforming"):
+        for index, data in tqdm(
+            enumerate(self.extracted_data), desc="Data transforming"
+        ):
             clean_data = {}
             self._remove_data(data, clean_data)
             self._convert_date(clean_data)
@@ -96,20 +98,32 @@ class Transformer:
     def _compare_previous_day(self, index, clean_data):
         if index == 0:
             data = self.extracted_data[index]
-            self._fill_comparaison_date(int(data['case_count']), int(data['hospitalized_count']), 
-                int(data['death_count']), clean_data)
+            self._fill_comparaison_date(
+                int(data["case_count"]),
+                int(data["hospitalized_count"]),
+                int(data["death_count"]),
+                clean_data,
+            )
         else:
-            yesterday_data = self.extracted_data[index-1]
+            yesterday_data = self.extracted_data[index - 1]
             current_data = self.extracted_data[index]
-            case_24_last_hours = int(current_data['case_count']) - int(yesterday_data['case_count'])
-            hospitalized_24_last_hours = int(current_data['hospitalized_count']) - int(yesterday_data['hospitalized_count'])
-            death_24_last_hours = int(current_data['death_count']) - int(yesterday_data['death_count'])
-            self._fill_comparaison_date(case_24_last_hours, hospitalized_24_last_hours, 
-                death_24_last_hours, clean_data)
+            case_24_last_hours = int(current_data["case_count"]) - int(
+                yesterday_data["case_count"]
+            )
+            hospitalized_24_last_hours = int(current_data["hospitalized_count"]) - int(
+                yesterday_data["hospitalized_count"]
+            )
+            death_24_last_hours = int(current_data["death_count"]) - int(
+                yesterday_data["death_count"]
+            )
+            self._fill_comparaison_date(
+                case_24_last_hours,
+                hospitalized_24_last_hours,
+                death_24_last_hours,
+                clean_data,
+            )
 
     def _fill_comparaison_date(self, case, hospitalized, death, clean_data):
         clean_data["case_24_last_hours"] = case
         clean_data["hospitalized_24_last_hours"] = hospitalized
         clean_data["death_24_last_hours"] = death
-        
-

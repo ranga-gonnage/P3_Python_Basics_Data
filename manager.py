@@ -32,7 +32,6 @@ class Manager:
         transformer = Transformer(self.dataset)
         transformer.transform()
         self.tranform_data = transformer.get_clean_data()
-        
 
     def _handle_update(self):
         transformer = Transformer(self.dataset)
@@ -53,10 +52,9 @@ class Manager:
     def _is_file_contains_data(self):
         is_file_contains_data = False
         try:
-            with open('covid_data.csv', newline='') as csvfile:
-                spamreader = csv.reader(csvfile, delimiter=',')
+            with open("covid_data.csv", newline="") as csvfile:
+                spamreader = csv.reader(csvfile, delimiter=",")
                 is_file_contains_data = len(list(spamreader)) != 0
         except FileNotFoundError:
             return False
         return is_file_contains_data
-    
